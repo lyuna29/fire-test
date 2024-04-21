@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>임현아 개인페이지</title>
+    <link rel="stylesheet" href="./css/hyunah.css">
+</head>
+<body>
+    <div class="back">
+        <div class="wrap">
+            <div class="center">
+                <div class="pic">
+                    <img class="pro-pic" src="image/임현아_프로필.jpeg" alt="프로필 사진" />
+                </div>
+                <div class="main">
+                    <div class="profile">
+                        <h2 class="name">저를 소개합니다</h2>
+                        <p class="pro-p">이름 : 임현아</p>
+                        <p class="pro-p">mbti : ESFP</p>
+                        <p class="pro-p">취미 : 요리, 베이킹, 뜨개질, 볼링</p>
+                        <p class="pro-p">관심사 : 여행, 덕질</p>
+                        <p class="pro-p">강쥐이름: 크림이 (비숑 3살)</p> 
+                        <p class="pro-p">특징 : 새로운 사람 만나는 것을 좋아함. 학생회 4년 경력</p> 
+                        <p class="pro-p">팀원에게 한마디 : 앞으로 잘 부탁드립니다 팔로민 화이팅!</p>
+                        <p> 블로그 : <a href="https://lyuna29.tistory.com/">https://lyuna29.tistory.com/</a>
+                        </p>
+                        <p> 깃허브 : <a href="https://github.com/lyuna29">https://github.com/lyuna29</a>
+                        </p>
+                        </p> 
+                    </div>
+                    <div class="hashtag">
+                        <h2 class="hash">#긍정왕 #개발자아자</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="comment">
+                <form onsubmit="addComment(event)">
+                  <div class="com-fo">
+                    <input type="text" class="form-control" placeholder="댓글을 입력하세요" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">작성</button>
+                </form>
+                <div class="comments mt-3">
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
+
+<script>
+    function addComment(event) {
+        event.preventDefault();
+        const commentInput = event.target.querySelector("input");
+        const commentText = commentInput.value;
+        const date = new Date().toLocaleString();
+
+        const commentDiv = document.createElement("div");
+        commentDiv.className = "card my-3";
+
+        const cardBodyDiv = document.createElement("div");
+        cardBodyDiv.className = "card-body";
+
+         cardBodyDiv.innerHTML = `
+            <p class="card-text">${commentText} <span class="comment-time">${date}</span></p>
+            <div class="comment-buttons">
+                <button class="btn btn-sm btn-primary edit-btn">수정</button>
+                <button class="btn btn-sm btn-danger delete-btn">삭제</button>
+            </div>
+        `;
+
+        commentDiv.appendChild(cardBodyDiv);
+
+        const commentsDiv = event.target.parentNode.querySelector(".comments");
+        commentsDiv.insertBefore(commentDiv, commentsDiv.firstChild);
+
+        commentInput.value = "";
+      }
+
+</script>
+
+</body>
+</html>
